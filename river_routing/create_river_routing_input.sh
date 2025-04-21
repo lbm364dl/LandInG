@@ -24,10 +24,10 @@
 ##   - RIVERROUTINGFILE: River routing input file to be created.              ##
 ################################################################################
 
-DRAINAGEBIN="./drainage"
-LPJGRID=""
-DDMASCII=""
-RIVERROUTINGFILE=""
+DRAINAGEBIN="/home/catalin/LPJmL/bin/drainage"
+LPJGRID="../gadm/grid_gadm_30arcmin.bin"
+DDMASCII="./global_30_minute_potential_network_v601_asc/g_network.asc"
+RIVERROUTINGFILE="river_routing.bin"
 
 ## Convert drainage direction map into LPJmL river routing input
 $DRAINAGEBIN "$LPJGRID" "$DDMASCII" "$RIVERROUTINGFILE"

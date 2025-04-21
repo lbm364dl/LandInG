@@ -35,7 +35,7 @@ if (nchar(elevationdir) > 0) {
 ## latitude of grid cell. In case of "CSV" you must also provide spatial      ##
 ## resolution lpj_res.
 gridformat <- "BIN"
-gridname <- "ADD_GRIDFILE_NAME_HERE"
+gridname <- "../gadm/grid_gadm_30arcmin.bin"
 lpj_res <- c("lon" = 1 / 2, "lat" = 1 / 2)
 # lpj_res determined automatically if gridformat == "BIN"
 ################################################################################
@@ -46,7 +46,7 @@ lpj_res <- c("lon" = 1 / 2, "lat" = 1 / 2)
 ## Spatial resolution must be the same as the resolution of LPJmL grid. If    ##
 ## using ETOPO1 elevation data use resample_etopo.sh to resample source data  ##
 ## to target resolution.                                                      ##
-elevation_source_name <- "ADD_ELEVATION_SOURCE_FILE_HERE"
+elevation_source_name <- "./ETOPO1_resampled_30m_by_30m_blockmedian.nc"
 ################################################################################
 
 ################################################################################
