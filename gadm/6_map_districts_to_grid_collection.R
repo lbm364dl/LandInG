@@ -392,6 +392,7 @@ if (any(sapply(cell_list[lpjgrid_raster[grid_index]], is.null))) {
   if (exists("cowdata")) {
     # Check which country code missing cells from cell_list have in cowdata
     mindex <- which(sapply(cell_list[lpjgrid_raster[grid_index]], is.null))
+
     missing_cow <- cowdata[mindex, "country"]
     if (exists("cowmetatable")) {
       # Check that missing cells have "No land" code
@@ -761,11 +762,12 @@ if (exists("gadmraster")) {
     zname = "level",
     zunit = "",
     NAflag = -99,
-    datatype = ifelse(
-      max(cellStats(outputbrick, max)) < 2^15,
-      "INT2S",
-      "INT4S"
-    ),
+    # fails when using int datatype
+    # datatype = ifelse(
+    #   max(cellStats(outputbrick, max)) < 2^15,
+    #   "INT2S",
+    #   "INT4S"
+    # ),
     overwrite = TRUE,
     compression = 9
   )
