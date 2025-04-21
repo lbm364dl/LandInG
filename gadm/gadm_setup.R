@@ -94,7 +94,7 @@ library(units)
 # geographical coordinate reference system. Because of this, results differ from
 # earlier versions of "sf". If you need to reproduce the behaviour of earlier
 # "sf" versions you can switch off "s2" functionality with:
-# sf_use_s2(FALSE)
+sf_use_s2(FALSE)
 ################################################################################
 
 ################################################################################

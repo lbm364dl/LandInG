@@ -108,6 +108,7 @@ if (cluster) {
     }
     if (num_cluster > 1) {
       # Start cluster on local machine
+      num_cluster <- 30
       cl <- parallel::makeCluster(num_cluster)
       # Tell foreach to use this cluster
       registerDoParallel(num_cluster)
@@ -246,6 +247,7 @@ intersection_loop <- foreach(
   # Read grid cell shape file. This is done on each parallel task to reduce
   # amount of data that needs to be sent from master task to slave tasks.
   # On the other hand, it does not need to be reloaded for each loop iteration.
+  library(sf)
   if (!exists("lpjgrid_shape")) {
     lpjgrid_shape <- st_read(gridcell_shapefile, quiet = TRUE)
   }
@@ -363,7 +365,7 @@ intersection_loop <- foreach(
     delete_features <- which(country_gridpolygons$Shapearea <= threshold)
     zero_area_warn <- paste(
       "Removing", length(delete_features),
-      "polygons with", threshold, deparse_unit(threshold), "Shapearea from",
+      "polygons with", threshold, units::deparse_unit(threshold), "Shapearea from",
       country_shapes[cindex]
     )
     warning(zero_area_warn, call. = FALSE, immediate. = TRUE)
