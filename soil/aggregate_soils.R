@@ -48,7 +48,7 @@ hwsd_usda_class_file <- "D_USDA_TEX_CLASS.csv"
 ##                                                                            ##
 ## LPJml grid file. This will be used to determine the target resolution and  ##
 ## for which cells to extract data from HWSD. Must be in LPJmL input format.  ##
-gridname <- "ENTER_PATH_TO_GRIDFILE"
+gridname <- "../gadm/grid_gadm_30arcmin.bin"
 ##                                                                            ##
 ## Version string for files created by this script. This is optional but can  ##
 ## be used to distinguish different versions. The file names will always      ##
@@ -241,6 +241,7 @@ if (cluster) {
     }
     if (num_cluster > 1) {
       # Start cluster on local machine
+      num_cluster <- 30
       cl <- parallel::makeCluster(num_cluster)
       # Tell foreach to use this cluster
       registerDoParallel(num_cluster)
