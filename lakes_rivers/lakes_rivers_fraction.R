@@ -24,7 +24,7 @@ if (nchar(glwd_dir) > 0) {
 }
 ## Grid file:                                                                 ##
 ## Must be in LPJmL input format.                                             ##
-gridname <- "ENTER_GRID_FILE_HERE"
+gridname <- "../gadm/grid_gadm_30arcmin.bin"
 ##                                                                            ##
 ## GLWD Level 3:                                                              ##
 ## Grid in ArcView/ArcInfo coverage format at 30 x 30 second resolution       ##
@@ -343,14 +343,6 @@ glwd3_raster <- crop(glwd3_raster, gridraster)
 ################################################################################
 
 
-################################################################################
-## Derive matching raster of cell areas.                                      ##
-glwd_area <- raster(extent(glwd3_raster), resolution = res(glwd3_raster))
-values(glwd_area) <- rep(
-  cellarea(yFromRow(glwd3_raster), xres(glwd3_raster), yres(glwd3_raster)),
-  each = ncol(glwd3_raster)
-)
-################################################################################
 
 ################################################################################
 ## Aggregate areas covered by selected glwd3_classes in each cell at target   ##
@@ -367,6 +359,16 @@ cat(
 )
 for (type in names(glwd3_classes)) {
   cat("Processing", type, "\n")
+
+  ################################################################################
+  ## Derive matching raster of cell areas.                                      ##
+  glwd_area <- raster(extent(glwd3_raster), resolution = res(glwd3_raster))
+  values(glwd_area) <- rep(
+    cellarea(yFromRow(glwd3_raster), xres(glwd3_raster), yres(glwd3_raster)),
+    each = ncol(glwd3_raster)
+  )
+  ################################################################################
+
   # Get area of cells that have the respective type
   typearea <- mask(
     mask(glwd_area, glwd3_raster),
@@ -374,19 +376,28 @@ for (type in names(glwd3_classes)) {
     maskvalue = glwd3_classes[type],
     inverse = TRUE
   )
+  rm(glwd_area)
+  browser()
+  gc()
   # Global sum before aggregation
   typesum <- cellStats(typearea, sum)
+  browser()
+  gc()
   # Aggregate to target resolution
   typearea <- aggregate(typearea, fact = aggregation_factor, fun = sum)
+  browser()
   # Check global sum after aggregation
   if (abs(cellStats(typearea, sum) / typesum - 1) > 1e-8) {
     stop(
       "Global sum after aggregation differs from global sum before aggregation."
     )
   }
+  browser()
   assign(paste0("lpj_", type, "_area"), typearea)
+  browser()
   rm(typearea)
 }
+browser()
 # Convert absolute areas into cell fractions and extract values for all cells
 # in grid.
 grid_index <- cellFromXY(gridraster, griddata)

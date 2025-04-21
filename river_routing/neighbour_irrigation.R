@@ -48,12 +48,12 @@ if (nchar(drainagedir) > 0) {
 ## Whether R is running on a cluster with multiple CPUs (used to determine    ##
 ## whether to try parallelization).                                           ##
 ## Set to FALSE to run in sequential mode.                                    ##
-cluster <- FALSE
+cluster <- TRUE
 ##                                                                            ##
 ## Grid:                                                                      ##
-gridname <- "ENTER PATH TO GRID INPUT FILE HERE"
+gridname <- "../gadm/grid_gadm_30arcmin.bin"
 ## River routing (such as created by create_river_routing_input.sh):          ##
-drainname <- "ENTER PATH TO DRAINAGE INPUT FILE HERE"
+drainname <- "./river_routing.bin"
 ## Version string (optional string added to filenames of files created by     ##
 ## this script or by river_routing.R (spatial resolution is added             ##
 ## automatically).                                                            ##
@@ -136,6 +136,7 @@ if (cluster) {
       num_cluster <- 1
     }
   } else if (require(doParallel)) {
+    print("imhereee")
     # Try parallelization through parallel package.
     # This is probably more suitable to run in parallel on a local machine
     # Get number of CPU cores
@@ -151,6 +152,8 @@ if (cluster) {
     }
     if (num_cluster > 1) {
       # Start cluster on local machine
+      num_cluster <- 6
+      print(num_cluster)
       cl <- parallel::makeCluster(num_cluster)
       # Tell foreach to use this cluster
       registerDoParallel(num_cluster)
@@ -756,9 +759,9 @@ if (nrow(cell_loop) != gridheader$header["ncell"]) {
 if (anyNA(cell_loop)) {
   stop("Unexpected NAs in cell_loop")
 }
-if (any(cell_loop < 1 || cell_loop > gridheader$header["ncell"])) {
+if (any(cell_loop < 1 | cell_loop > gridheader$header["ncell"])) {
   stop(
-    length(which(cell_loop < 1 || cell_loop > gridheader$header["ncell"])),
+    length(which(cell_loop < 1 | cell_loop > gridheader$header["ncell"])),
     " out-of-range values in cell_loop"
   )
 }

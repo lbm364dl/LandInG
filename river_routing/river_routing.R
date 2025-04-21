@@ -38,11 +38,11 @@ if (nchar(drainagedir) > 0) {
   setwd(drainagedir)
 }
 ## Grid:                                                                      ##
-gridname <- "ADD_PATH_TO_GRID_FILE_HERE"
+gridname <- "../gadm/grid_gadm_30arcmin.bin"
 ## River routing:                                                             ##
-drainname <- "ADD_PATH_TO_RIVER_ROUTING_FILE_HERE"
+drainname <- "./river_routing.bin"
 ## Land fraction (optional, comment line to run without):                     ##
-# landfracname <- "ADD_PATH_TO_LANDFRACTION_FILE_HERE_OR_COMMENT_THIS_LINE"
+landfracname <- "../gadm/landfrac_gadm_30arcmin.bin"
 ## Version string (optional string added to filenames of files created by     ##
 ## this script, e.g. if you have more than one routing network (spatial       ##
 ## resolution is added automatically).                                        ##

@@ -35,8 +35,8 @@ download_etopo1=TRUE
 ## Resolution consists of a value and a unit. Should usually be coarser than  ##
 ## source resolution.                                                         ##
 ## Possible units: (d)egree, (m)inute, (s)econd                               ##
-xres="5m"
-yres="5m"
+xres="30m"
+yres="30m"
 ## Operation to perform to get from source to target resolution. Either       ##
 ## "AGGREGATE" or "DISAGGREGATE". Default: AGGREGATE.                         ##
 resample_operation="AGGREGATE"
@@ -144,8 +144,7 @@ if [ $resample_operation == "AGGREGATE" ]; then
   etopo1_tgt_name=${etopo1_tgt_name/.nc/_${aggregation_function}.nc}
   echo Resampling $etopo1_src_local_masked to $etopo1_tgt_name using \
     $aggregation_function aggregation
-  gmt grd2xyz $etopo1_src_local_masked | gmt $aggregation_function \
-    -R$etopo1_src_local_unpacked -I${xres}/${yres} -C -rp -G$etopo1_tgt_name
+  gmt grd2xyz $etopo1_src_local_masked | gmt $aggregation_function -R$etopo1_src_local_unpacked -I${xres}/${yres} -rp -G$etopo1_tgt_name
 else
   echo Resampling $etopo1_src_local_masked to $etopo1_tgt_name
   gmt grdsample $etopo1_src_local_masked -G$etopo1_tgt_name -I${xres}/${yres} -rp

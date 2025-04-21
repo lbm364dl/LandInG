@@ -49,8 +49,8 @@ rm(tmp_res)
 ## gadm_helper.R has predefined functionality for GeoPackage and ESRI         ##
 ## Shapefile format, however support may depend on your local system          ##
 ## installation.                                                              ##
-# gadm_format <- "GPKG"
-gadm_format <- "ESRI Shapefile"
+gadm_format <- "GPKG"
+# gadm_format <- "ESRI Shapefile"
 ################################################################################
 
 
