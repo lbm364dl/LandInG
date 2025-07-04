@@ -415,8 +415,9 @@ monfreda_names <- readLines(file.path(monfreda_base, "monfreda_names.txt"))
 ## download.                                                                  ##
 monfreda_datadir <- c(
   Geotiff = file.path(
+    "harvested_area",
     "HarvestedAreaYield175Crops_Geotiff",
-    "HarvestedAreaYield175Crops_Geotiff"
+    "GeoTiff"
   ),
   NetCDF = "HarvestedAreaYield175Crops_NetCDF"
 )
