@@ -189,6 +189,7 @@ fao_gadm_country_mapping <- list(
   "Nauru" = "NRU",
   "Nepal" = "NPL",
   "Netherlands" = "NLD",
+  "Netherlands (Kingdom of the)" = "NLD",
   "Netherlands Antilles (former)" = c("BES", "CUW", "SXM"),
   # Bonaire, Sint Eustatius, Saba; Curacao; Sint Maarten
   "New Caledonia" = "NCL",
@@ -229,6 +230,7 @@ fao_gadm_country_mapping <- list(
   "Rwanda" = "RWA",
   "Saint Barthelemy" = "BLM",
   "Saint Helena, Ascension and Tristan da Cunha" = "SHN",
+  "Ascension, Saint Helena and Tristan da Cunha" = "SHN",
   "Saint Kitts and Nevis" = "KNA",
   "Saint Lucia" = "LCA",
   "Saint Pierre and Miquelon" = "SPM",
@@ -272,6 +274,7 @@ fao_gadm_country_mapping <- list(
   "Trinidad and Tobago" = "TTO",
   "Tunisia" = "TUN",
   "Turkey" = "TUR",
+  "Turkiye" = "TUR",
   "Turkmenistan" = "TKM",
   "Turks and Caicos Islands" = "TCA",
   "Tuvalu" = "TUV",
@@ -322,6 +325,7 @@ fao_gadm_country_mapping <- list(
   # No cropland in HYDE
   "Saint-Martin (French Part)" = "MAF",
   "Saint-Martin (French part)" = "MAF",
+  "Saint Martin (French part)" = "MAF",
   # Only in FAO country groups, but has cropland in HYDE
   # Renamed at some point, keeping both names
   "South Georgia and the South Sandwich Islands" = "SGS",
