@@ -460,7 +460,7 @@ hyde_area <- load_hyde_area(
   filename = hyde_area_file,
   fileunits = hyde_area_file_units,
   faounits = fao_area_units,
-  unitraster = NULL # set to NULL to get native HYDE resolution
+  unitraster = ramankutty_gadm_cropland # set to NULL to get native HYDE resolution
 )
 hyde_area_file_units <- hyde_area$unit
 hyde_area <- hyde_area$area
@@ -470,7 +470,7 @@ if (matching_extent(
   xres(hyde_area),
   yres(hyde_area)
 )) {
-  hyde2gadm <- round(res(hyde_area) / res(ramankutty_gadm_cropland), 4)
+  hyde2gadm <- round(res(ramankutty_gadm_cropland) / res(hyde_area), 4)
   if (max(hyde2gadm %% 1) != 0) {
     stop(
       "Target resolution ", toString(round(res(ramankutty_gadm_cropland), 5)),
@@ -490,7 +490,7 @@ if (matching_extent(
     hyde_target_area <- hyde_area
   } else {
     hyde_target_area <- aggregate(hyde_area, fact = hyde2gadm, fun = sum)
-    if (cellStats(hyde_target_area, sum) != cellStats(hyde_area, sum)) {
+    if (!all.equal(cellStats(hyde_target_area, sum), cellStats(hyde_area, sum))) {
       # Global area sum before and after aggregation do not match
       stop("Error aggregating hyde_area to target resolution")
     }

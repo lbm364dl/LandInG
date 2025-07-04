@@ -725,7 +725,7 @@ if (exists("hyde_version_string") && nchar(hyde_version_string) > 0) {
       "hyde_", hyde_cropland_varname, "_max_",
       hyde_period[1], "_", hyde_period[2], "_",
       hyde_version_string,
-      ".nc4"
+      ".nc"
     )
   )
   hyde_max_irrigated_filename <- file.path(
@@ -734,7 +734,7 @@ if (exists("hyde_version_string") && nchar(hyde_version_string) > 0) {
       "hyde_", hyde_irrigated_varname, "_max_",
       hyde_period[1], "_", hyde_period[2], "_",
       hyde_version_string,
-      ".nc4"
+      ".nc"
     )
   )
   hyde_max_rainfed_filename <- file.path(
@@ -743,7 +743,7 @@ if (exists("hyde_version_string") && nchar(hyde_version_string) > 0) {
       "hyde_", hyde_rainfed_varname, "_max_",
       hyde_period[1], "_", hyde_period[2], "_",
       hyde_version_string,
-      ".nc4"
+      ".nc"
     )
   )
 } else {
@@ -752,7 +752,7 @@ if (exists("hyde_version_string") && nchar(hyde_version_string) > 0) {
     paste0(
       "hyde_", hyde_cropland_varname, "_max_",
       hyde_period[1], "_", hyde_period[2],
-      ".nc4"
+      ".nc"
     )
   )
   hyde_max_irrigated_filename <- file.path(
@@ -760,7 +760,7 @@ if (exists("hyde_version_string") && nchar(hyde_version_string) > 0) {
     paste0(
       "hyde_", hyde_irrigated_varname, "_max_",
       hyde_period[1], "_", hyde_period[2],
-      ".nc4"
+      ".nc"
     )
   )
   hyde_max_rainfed_filename <- file.path(
@@ -768,7 +768,7 @@ if (exists("hyde_version_string") && nchar(hyde_version_string) > 0) {
     paste0(
       "hyde_", hyde_rainfed_varname, "_max_",
       hyde_period[1], "_", hyde_period[2],
-      ".nc4"
+      ".nc"
     )
   )
 }

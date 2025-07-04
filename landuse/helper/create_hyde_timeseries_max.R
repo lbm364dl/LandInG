@@ -144,7 +144,7 @@ create_hyde_timeseries_max <- function(source,
         nc_close(zz)
         # Load intermediate data
         working_target_data <- raster(working_target)
-        hyde2gadm <-  round(res(working_target_data) / res(targetraster), 4)
+        hyde2gadm <-  round(res(targetraster) / res(working_target_data), 4)
         # Check compatibility of source and target resolution
         if (max(hyde2gadm %% 1) != 0 || min(hyde2gadm) < 1) {
           stop(
@@ -171,7 +171,8 @@ create_hyde_timeseries_max <- function(source,
             target_data / targetarea,
             filename = target,
             varname = varname,
-            varunit = "1"
+            varunit = "1",
+            overwrite = TRUE
           )
         } else {
           # Data is in absolute area, can be summed up
@@ -191,7 +192,8 @@ create_hyde_timeseries_max <- function(source,
             target_data,
             filename = target,
             varname = varname,
-            varunit = hyde_area_units
+            varunit = hyde_area_units,
+            overwrite = TRUE
           )
         }
       }
