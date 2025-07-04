@@ -55,12 +55,12 @@ ramankutty_version_string <- ""
 ## crops/crop groups at the country scale. These are combined with harvested  ##
 ## area data from MIRCA2000 (setup further below).                            ##
 ## CSV file downloaded from AQUASTAT website                                  ##
-aquastat_file <- stop("Set 'aquastat_file' in landuse_setup.R")
+aquastat_file <- "./Aquastat/aquastat.csv"
 ## If file has empty rows at the beginning indicate here, otherwise set to 0  ##
-aquastat_file_empty_rows <- 2
+aquastat_file_empty_rows <- 0
 ## Are all columns named? In versions downloaded over a period of several     ##
 ## months the last column is missing a name. Check your version.              ##
-aquastat_file_all_column_names <- FALSE
+aquastat_file_all_column_names <- TRUE
 ## Define for each column in the AQUASTAT file the  data type (make sure this ##
 ## matches the file you downloaded).                                          ##
 aquastat_file_column_classes <-  c(
@@ -112,9 +112,9 @@ faostat_dir <- "Faostat"
 ## Confirm filenames with your download.                                      ##
 fao_production_file <- file.path(
   faostat_dir,
-  "Production_Crops_Livestock_E_All_Data.csv"
+  "production_all_data/Production_Crops_Livestock_E_All_Data.csv"
 )
-fao_landuse_file <- file.path(faostat_dir, "Inputs_LandUse_E_All_Data.csv")
+fao_landuse_file <- file.path(faostat_dir, "landuse_all_data/Inputs_LandUse_E_All_Data.csv")
 ## Does the FAOSTAT production data include livestock? Structure of FAOSTAT   ##
 ## database was changed recently. If TRUE, read_FAOSTAT.R will attempt to     ##
 ## filter only crop-related data.
@@ -123,23 +123,17 @@ fao_production_file_includes_livestock <- TRUE
 ## "Definitions and standards". You should download them when downloading the ##
 ## main FAOSTAT data used in read_FAOSTAT.R                                   ##
 ## Production Item list:                                                      ##
-fao_production_item_file <-
-  stop("Set 'fao_production_item_file' in landuse_setup.R")
+fao_production_item_file <- "./Faostat/fao_production_item_file.csv"
 ## Production Item Group list:                                                ##
-fao_production_item_group_file <-
-  stop("Set 'fao_production_item_group_file' in landuse_setup.R")
+fao_production_item_group_file <- "./Faostat/fao_production_item_group_file.csv"
 ## Production Country list:                                                   ##
-fao_production_country_file <-
-  stop("Set 'fao_production_country_file' in landuse_setup.R")
+fao_production_country_file <- "./Faostat/fao_production_country_file.csv"
 ## Production Country Group list:                                             ##
-fao_production_country_group_file <-
-  stop("Set 'fao_production_country_group_file' in landuse_setup.R")
+fao_production_country_group_file <- "./Faostat/fao_production_country_group_file.csv"
 ## Land use Country list:                                                     ##
-fao_landuse_country_file <-
-  stop("Set 'fao_landuse_country_file' in landuse_setup.R")
+fao_landuse_country_file <- "./Faostat/fao_landuse_country_file.csv"
 ## Land use Country Group list:                                               ##
-fao_landuse_country_group_file <-
-  stop("Set 'fao_landuse_country_group_file' in landuse_setup.R")
+fao_landuse_country_group_file <- "./Faostat/fao_landuse_country_group_file.csv"
 ## Units to be used for FAOSTAT data (data are converted from their source    ##
 ## unit automatically by read_FAOSTAT.R. fao_area_units should be identical   ##
 ## to aquastat_area_units and monfreda_area_units.                            ##
@@ -190,14 +184,14 @@ fao_drop_crops <- c(
 ## directory.                                                                 ##
 ## Administrative levels 0-2; codes only, by default called something like    ##
 ## gadm_level0_1_2_*.nc.                                                      ##
-gadmlevel_file <- stop("Set 'gadmlevel_file' in landuse_setup.R")
+gadmlevel_file <- "../gadm/gadm_level0_1_2_30arcmin.nc"
 ## List linking codes in gadmlevel_file to names (CSV expected)               ##
 ## By default called something like "gadm_level0_1_2_*_indices.csv"           ##
-gadmlevel_names_file <- stop("Set 'gadmlevel_names_file' in landuse_setup.R")
+gadmlevel_names_file <- "../gadm/gadm_level0_1_2_30arcmin_indices.csv"
 ## Raster with number of unique administrative level 0 shapes in each cell    ##
 ## (as opposed to gadm_file and gadmlevel_file which always return unit with  ##
 ## largest area in cell). By default called something like ncountry_*.nc      ##
-gadmborder_file <- stop("Set 'gadmborder_file' in landuse_setup.R")
+gadmborder_file <- "../gadm/ncountry_gadm_30arcmin.nc"
 ## Mapping between FAOSTAT countries and GADM codes
 ## fao_gadm_country_mapping.R matches FAOSTAT countries with GADM codes
 ## fao_compound_countries.R lists FAOSTAT countries that split into other     ##
@@ -442,7 +436,7 @@ monfreda_threshold_border <- 0.6
 ## This is the cropland dataset used by Monfreda. Needed for consistency      ##
 ## check.                                                                     ##
 ## Directory containing decompressed Ramankutty data                          ##
-ramankutty_base <- stop("Set 'ramankutty_base' in landuse_setup.R")
+ramankutty_base <- "./Ramankutty/CroplandPastureArea2000_Geotiff"
 ## Raster file providing gridded cropland extent
 ramankutty_cropland_file <- file.path(ramankutty_base, "Cropland2000_5m.tif")
 ## Spatial area unit used in ramankutty_cropland_file

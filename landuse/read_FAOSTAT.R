@@ -48,9 +48,9 @@ for (conv in names(unit_conversion)) {
 ## or character(0) to load all                                                ##
 landuse_vars <- c(
   "Cropland",
-  "Land with temporary fallow",
-  "Land under temp. meadows and pastures",
-  "Land under perm. meadows and pastures"
+  "Temporary fallow",
+  "Temporary meadows and pastures",
+  "Permanent meadows and pastures"
 )
 ################################################################################
 

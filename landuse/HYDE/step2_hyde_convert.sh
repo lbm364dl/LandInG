@@ -47,15 +47,17 @@ for IDIR in $ASCIIDIR/*_$TYPE;do
 
     [[ $YEAR -lt $STARTYEAR || $YEAR -gt $LASTYEAR ]] && continue
 
+
     mkdir -p $ODIR
     echo " $FILE $VAR $CAL $YEAR ..."
     ## This keeps trying until files are converted successfully.
     while [ ! -f $ODIR/${VAR}_$YEAR.nc4 ];do
+      tail -n +7 $FILE |\
       cdo --history -m -9999 -f nc4c -z zip -s \
           -setreftime,$STARTYEAR-01-01,00:00:00,1years \
           -settaxis,$YEAR-01-01,00:00:00,1years \
           -setname,$VAR -setmissval,1E+20 -invertlatdata -setunit,km^2 \
-          -input,grid.txt $ODIR/${VAR}_$YEAR.nc4 < $FILE
+          -input,grid.txt $ODIR/${VAR}_$YEAR.nc4
     done
   done
 done
