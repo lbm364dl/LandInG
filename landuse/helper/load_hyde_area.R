@@ -101,7 +101,7 @@ load_hyde_area <- function(filename,
   }
   # Aggregate to spatial resolution of unitraster if necessary.
   if (!is.null(unitraster) && any(res(hyde_area) < res(unitraster))) {
-    hyde2gadm <- round(res(hyde_area) / res(unitraster), 4)
+    hyde2gadm <- round(res(unitraster) / res(hyde_area), 4)
     if (max(hyde2gadm %% 1) != 0) {
       stop(
         "Target resolution ", toString(round(res(unitraster), 5)),

@@ -1328,7 +1328,7 @@ if (matching_extent(
 }
 # Determine aggregation factor
 if (any(res(monfreda_raster) < res(gadm_raster))) {
-  monfreda2gadm <- round(res(monfreda_raster) / res(gadm_raster), 4)
+  monfreda2gadm <- round(res(gadm_raster) / res(monfreda_raster), 4)
   if (max(monfreda2gadm %% 1) != 0) {
     stop(
       "GADM resolution ",
@@ -2532,7 +2532,7 @@ if (length(fill_countries) > 0) {
     hyde_raster <- setExtent(hyde_raster, global_extent)
   }
   if (any(res(hyde_raster) < res(gadm_raster))) {
-    hyde2gadm <- round(res(hyde_raster) / res(gadm_raster), 4)
+    hyde2gadm <- round(res(gadm_raster) / res(hyde_raster), 4)
     if (max(hyde2gadm %% 1) != 0) {
       stop(
         "HYDE resolution ",
