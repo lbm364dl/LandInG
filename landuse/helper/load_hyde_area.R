@@ -113,8 +113,9 @@ load_hyde_area <- function(filename,
     # Calculate global sum to check after aggregation
     areasum <- cellStats(hyde_area, sum, na.rm = TRUE)
     # Aggregate
-    hyde_area <- aggregate(hyde_area, hyde2gadm)
-    if (areasum != cellStats(hyde_area, sum, na.rm = TRUE)) {
+    hyde_area <- aggregate(hyde_area, hyde2gadm, sum, na.rm = TRUE)
+
+    if (!all.equal(areasum, cellStats(hyde_area, sum, na.rm = TRUE))) {
       stop("Error aggregating hyde_area")
     }
   } else if (!is.null(unitraster) &&
