@@ -43,7 +43,6 @@ clover
 cocoa
 coconut
 coffee
-coir
 cotton
 cowpea
 cranberry
@@ -69,7 +68,6 @@ greencorn
 greenonion
 greenpea
 groundnut
-gums
 hazelnut
 hemp
 hempseed
@@ -121,7 +119,6 @@ pineapple
 pistachio
 plantain
 plum
-popcorn
 poppy
 potato
 pulsenes

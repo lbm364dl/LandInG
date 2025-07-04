@@ -274,6 +274,9 @@ mismatch <- which(
   production_items$CODE %in% fao_production_item_group_def$Item.Code &
   production_items$NAME != fao_production_item_group_def$Item[index]
 )
+production_items$NAME[47]
+fao_production_item_group_def$Item[index][47]
+
 if (length(mismatch) > 0) {
   stop(
     length(mismatch), " crop names in production_array",
