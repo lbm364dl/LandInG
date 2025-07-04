@@ -2192,7 +2192,7 @@ for (country in dimnames(fao_monfreda_production_array)[[1]]) {
       write.csv(
         cbind(
           dimnames(fao_monfreda_production_array)[[2]][crops],
-          t(fao_monfreda_production_array[country, crops, datacols2, ])
+          fao_monfreda_production_array[country, crops, , datacols2]
         ),
         file = countrystats_file,
         row.names = FALSE
