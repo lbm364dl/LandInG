@@ -274,8 +274,6 @@ mismatch <- which(
   production_items$CODE %in% fao_production_item_group_def$Item.Code &
   production_items$NAME != fao_production_item_group_def$Item[index]
 )
-production_items$NAME[47]
-fao_production_item_group_def$Item[index][47]
 
 if (length(mismatch) > 0) {
   stop(
@@ -1300,11 +1298,8 @@ monfreda_filenames <- character(length(monfreda_names))
 names(monfreda_filenames) <- monfreda_names
 for (crop in monfreda_names) {
   tmpnames <- file.path(
-    dir(
-      file.path(monfreda_base, monfreda_datadir[monfreda_format]),
-      pattern = paste0("^", crop, "_HarvAreaYield"),
-      full.names = TRUE
-    ),
+    file.path(monfreda_base, monfreda_datadir[monfreda_format]),
+    crop,
     paste0(
       crop, "_",
       monfreda_file_var[[monfreda_format]][1],
