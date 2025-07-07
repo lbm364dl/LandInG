@@ -39,7 +39,7 @@ source("landuse_setup.R")
 ## - Value of the list item: FAOSTAT crop whose Monfreda pattern(s) should be ##
 ##   used instead (make sure that Monfreda has those crops)                   ##
 fao_reassign <- list(
-  "Kapok fruit" = "Kapok fibre",
+  "Kapok fruit" = "Kapok fibre, raw",
   "Fruit, pome nes" = c("Apples", "Pears", "Quinces")
 )
 ################################################################################
@@ -561,11 +561,9 @@ monfreda_filenames <- character(length(monfreda_names))
 names(monfreda_filenames) <- monfreda_names
 for (crop in monfreda_names) {
   tmpnames <- file.path(
-    dir(
-      file.path(monfreda_base, monfreda_datadir[monfreda_format]),
-      pattern = paste0("^", crop, "_HarvAreaYield"),
-      full.names = TRUE
-    ),
+    monfreda_base, 
+    monfreda_datadir[monfreda_format],
+    crop,
     paste0(
       crop, "_", monfreda_file_var[[monfreda_format]][1],
       ".", monfreda_file_ext[monfreda_format]
@@ -602,7 +600,7 @@ if (is.finite(index)) {
 }
 if (any(res(monfreda_raster) < res(gadm_raster))) {
   # Aggregation factor
-  monfreda2gadm <- round(res(monfreda_raster) / res(gadm_raster), 4)
+  monfreda2gadm <- round(res(gadm_raster) / res(monfreda_raster), 4)
   if (max(monfreda2gadm %% 1) != 0) {
     stop(
       "GADM resolution ", toString(round(res(gadm_raster), 5)),
