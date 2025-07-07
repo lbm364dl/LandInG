@@ -155,7 +155,7 @@ for (var in gaez_variables) {
     nextend <- (max(gadm_raster_lats) - max(fileraster_lats)) / yres(fileraster)
     sextend <- (min(fileraster_lats) - min(gadm_raster_lats)) / yres(fileraster)
     if (nextend > 0.01) {
-      stop(
+      warning(
         "Northern border does not seem to match between ", sQuote(var),
         " and GADM mask"
       )
@@ -178,28 +178,29 @@ for (var in gaez_variables) {
       ymax(fileraster)
     )
     # Crop GADM mask to that extent
-    gadm_tmp <- crop(gadm_raster, target_extent)
-    if (target_extent == extent(fileraster)) {
-      fileraster_target <- fileraster
-    } else {
-      cat(
-        "Regridding", sQuote(var), "from", toString(extent(fileraster)),
-        "to", toString(target_extent), "\n"
-      )
-      # Interpolate to target grid
-      if (var == "thermal_climates") {
-        # Use nearest neighbour for class variables
-        fileraster_target <- resample(fileraster, gadm_tmp, method = "ngb")
-      } else {
-        # Use bilinear interpolation for other climatic variables
-        fileraster_target <- resample(fileraster, gadm_tmp)
-      }
-      # Merge original and interpolated data; only cells missing in original
-      # data are taken from interpolated data.
-      fileraster_target <- merge(fileraster, fileraster_target)
-    }
+    # gadm_tmp <- crop(gadm_raster, target_extent)
+    # if (target_extent == extent(fileraster)) {
+    #   fileraster_target <- fileraster
+    # } else {
+    #   cat(
+    #     "Regridding", sQuote(var), "from", toString(extent(fileraster)),
+    #     "to", toString(target_extent), "\n"
+    #   )
+    #   # Interpolate to target grid
+    #   if (var == "thermal_climates") {
+    #     # Use nearest neighbour for class variables
+    #     fileraster_target <- resample(fileraster, gadm_tmp, method = "ngb")
+    #   } else {
+    #     # Use bilinear interpolation for other climatic variables
+    #     fileraster_target <- resample(fileraster, gadm_tmp)
+    #   }
+    #   # Merge original and interpolated data; only cells missing in original
+    #   # data are taken from interpolated data.
+    #   fileraster_target <- merge(fileraster, fileraster_target)
+    # }
     # Enlarge to full extent of GADM mask, using NA to fill missing cells
-    fileraster <- extend(fileraster_target, gadm_raster)
+    # fileraster <- extend(fileraster_target, gadm_raster)
+    fileraster <- extend(fileraster, gadm_raster)
     rm(fileraster_target)
   }
   if (matching_extent(
@@ -220,7 +221,7 @@ for (var in gaez_variables) {
       "You need to create a gridded GADM mask at the GAEZ resolution."
     )
   } else if (any(res(fileraster) < res(gadm_raster))) {
-    gaez2gadm <- round(res(fileraster) / res(gadm_raster), 4)
+    gaez2gadm <- round(res(gadm_raster) / res(fileraster), 4)
     if (max(gaez2gadm %% 1) != 0) {
       stop(
         "GADM resolution ", toString(round(res(gadm_raster), 5)),
@@ -402,7 +403,7 @@ writeRaster(
     triple_cropping_suitability_rainfed
   ),
   filename = gaez_multicropping_suit_rf_file,
-  datatype = "INT1S",
+  # datatype = "INT1S",
   NAflag = -9,
   overwrite = TRUE
 )
@@ -416,7 +417,7 @@ writeRaster(
     triple_cropping_suitability_irrigated
   ),
   filename = gaez_multicropping_suit_ir_file,
-  datatype = "INT1S",
+  # datatype = "INT1S",
   NAflag = -9,
   overwrite = TRUE
 )
