@@ -65,14 +65,14 @@ aquastat_file_all_column_names <- TRUE
 ## matches the file you downloaded).                                          ##
 aquastat_file_column_classes <-  c(
   "character",
-  "integer",
   "character",
-  "integer",
+  "character",
+  "character",
   "integer",
   "numeric",
   "character",
   "character",
-  "character"
+  "logical"
 )
 ## Index of the column which contains Metadata Confirm in your download.      ##
 aquastat_file_metadata_col <- 8
@@ -84,7 +84,7 @@ aquastat_file_use_FAOSTAT_country_col <- "M49.Code"
 ## The script read_AQUASTAT.R can either run interactively and ask the user   ##
 ## how to handle data points with additional metadata or apply a set of       ##
 ## rules default. See read_AQUASTAT.R for more details.                       ##
-aquastat_file_run_interactively <- TRUE
+aquastat_file_run_interactively <- FALSE
 ## Area unit used in aquastat_file. Confirm on AQUASTAT website. Not included ##
 ## in downloaded file.                                                        ##
 aquastat_area_source_units <- "1000 ha"

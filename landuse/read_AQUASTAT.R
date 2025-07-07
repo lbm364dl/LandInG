@@ -172,7 +172,8 @@ index <- grep(
   ignore.case = TRUE,
   value = TRUE
 )
-aquastat_countries <- unique(aquastat_rawdata[aquastat_datarows, index])
+aquastat_countries <- unique(aquastat_rawdata[aquastat_datarows, index, drop = FALSE])
+aquastat_rawdata[aquastat_datarows, index, drop = FALSE] |>class()
 cat(
   "Columns containing country information:",
   toString(sQuote(colnames(aquastat_countries))), "\n"
@@ -272,7 +273,8 @@ for (n in which(newnames != aquastat_countries[, index2])) {
 # Clean up crop names
 # Extract crop names and permanence (temporary/permanent) from variable names
 # ID column
-index1 <- grep("id", colnames(aquastat_vars), ignore.case = TRUE, invert = TRUE)
+# index1 <- grep("", colnames(aquastat_vars), ignore.case = TRUE, invert = TRUE)
+index1 <- "Variable"
 varname_table <- data.frame(
   aquastat_vars,
   permanence = unlist(
@@ -312,12 +314,13 @@ varname_table <- data.frame(
   stringsAsFactors = FALSE
 )
 # ID column
-index1 <- grep("id", colnames(varname_table)[1:2], ignore.case = TRUE)
+index1 <- grep("VariableGroup", colnames(varname_table)[1:2], ignore.case = TRUE, invert = TRUE)
+# index1 <- grep("id", colnames(varname_table)[1:2], ignore.case = TRUE)
 # Value column
 index2 <- grep(
-  "id", colnames(varname_table)[1:2],
+  "VariableGroup", colnames(varname_table)[1:2],
   ignore.case = TRUE,
-  invert = TRUE
+  invert = FALSE
 )
 # Order by ID
 index3 <- order(varname_table[, index1])
