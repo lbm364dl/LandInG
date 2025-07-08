@@ -871,7 +871,7 @@ if (file.exists(hyde_country_sums_RData)) {
         )
       }
       # Check whether resolutions match or aggregation is necessary
-      hyde2gadm <- round(c(res_x, res_y) / res(gadm_raster), 4)
+      hyde2gadm <- round(res(gadm_raster) / c(res_x, res_y), 4)
       if (max(hyde2gadm %% 1) != 0) {
         stop(
           "HYDE resolution ", toString(round(c(res_x, res_y), 5)),

@@ -1079,7 +1079,7 @@ for (year in seq(start_year, end_year)) {
       stop("Spatial extent of HYDE cropland does not match GADM extent")
     }
     # Aggregation factor form HYDE resolution to output resolution
-    hyde2gadm <- round(res(hyde_raster) / res(gadm_raster), 4)
+    hyde2gadm <- round(res(gadm_raster) / res(hyde_raster), 4)
     if (max(hyde2gadm %% 1) != 0) {
       stop(
         "GADM resolution ",
