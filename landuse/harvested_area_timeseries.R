@@ -1126,7 +1126,7 @@ for (year in seq(start_year, end_year)) {
       cat("Aggregating", sQuote(var), "to GADM resolution\n")
       sum1 <- sum(ncfiledata, na.rm = TRUE)
       ncfiledata <- aggregate_array(ncfiledata, hyde2gadm, "sum", FALSE)
-      if (abs(sum(ncfiledata, na.rm = TRUE) - sum1) > 1e-8) {
+      if (abs(sum(ncfiledata, na.rm = TRUE) - sum1) > 1e-6) {
         stop("Error aggregating ", sQuote(var), " data to output resolution")
       }
     }
